@@ -1,0 +1,11 @@
+logs/
+data/
+__pycache__/
+*.out
+*.err
+*.pyc
+*.pt
+*.pth
+*.npy
+*.npz
+mosaic_env/

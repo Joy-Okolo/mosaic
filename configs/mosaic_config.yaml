@@ -1,0 +1,59 @@
+experiment:
+  name: "mosaic_v1"
+  seed: 42
+  output_dir: "results/"
+  log_every: 10
+
+federation:
+  num_clients: 100
+  num_rounds: 1000
+  clients_per_round: 20
+  warmup_rounds: 10
+
+client_tiers:
+  tier1_fraction: 0.20
+  tier2_fraction: 0.50
+  tier3_fraction: 0.30
+  tier3_duty_cycle: 5
+
+encoders:
+  sensor:
+    input_features: 6
+    cnn_channels: [64, 128, 256]
+    cnn_kernel: 3
+    lstm_hidden: 128
+    lstm_layers: 2
+    bidirectional: true
+    embedding_dim: 128
+    dropout: 0.2
+
+fusion:
+  common_dim: 256
+  num_heads: 4
+  num_layers: 2
+  dropout: 0.1
+
+task:
+  num_classes: 6
+  head_hidden_dim: 128
+
+training:
+  local_epochs: 5
+  batch_size: 32
+  learning_rate: 0.01
+  weight_decay: 0.0001
+
+losses:
+  mu_prox: 0.01
+  lambda_anchor: 0.1
+  tau_contrastive: 0.3
+  tau_aggregation: 0.5
+
+mcat:
+  alpha: 0.3
+  beta: 0.4
+  gamma: 0.3
+
+duty_cycle:
+  estimation_window: 20
+  alignment_tolerance: 2
