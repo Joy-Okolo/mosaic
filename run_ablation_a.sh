@@ -18,6 +18,6 @@ echo "Node: $(hostname)"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
 cd ~/mosaic
-python experiments/run_fedavg.py --seed $1 --lambda_anchor 0.0
+python experiments/run_fedavg.py --seed $1 --lambda_anchor 0.0 --lr 0.001
 
 echo "Job finished: $(date)"
