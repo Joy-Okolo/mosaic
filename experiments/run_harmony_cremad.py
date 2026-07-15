@@ -241,7 +241,7 @@ class HarmonyCREMADServer:
 
             if client.modality in ('audio', 'both'):
                 audio_updates.append((enc_u, cls_u, n))
-            if client.modality in ('video', 'both'):
+            if client.modality == 'video':
                 video_updates.append((enc_u, cls_u, n))
 
         if audio_updates:
