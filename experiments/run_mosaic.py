@@ -102,6 +102,7 @@ def main():
         config=config,
         client_profiles=client_profiles,
         client_data_sizes=client_data_sizes,
+        client_tiers=client_tiers,
         device=device
     )
 

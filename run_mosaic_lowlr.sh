@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=mosaic_lowlr
-#SBATCH --output=logs/mosaic_lowlr__%j.out
-#SBATCH --error=logs/mosaic_lowlr_%j.err
+#SBATCH --job-name=mosaic_with_dutycycle_lowlr
+#SBATCH --output=logs/mosaic_with_dutycycle_lowlr_%j.out
+#SBATCH --error=logs/mosaic_with_dutycycle_lowlr_%j.err
 #SBATCH --time=04:00:00
 #SBATCH --partition=all-gpu
 #SBATCH --gres=gpu:1
@@ -10,7 +10,6 @@
 
 module load python/3.12
 module load cuda/12.6
-conda activate mosaic
 
 echo "Job started: $(date)"
 echo "EXPERIMENT: MOSAIC+MCAT | LR=0.001 | Seed=$1"
@@ -18,6 +17,8 @@ echo "Node: $(hostname)"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
 cd ~/mosaic
-python experiments/run_mosaic.py --seed $1 --lr 0.001
+
+/mmfs2/home/jacks.local/joy.okolo/mosaic/mosaic_env/bin/python experiments/run_mosaic.py --seed $1 --lr 0.001
+
 
 echo "Job finished: $(date)"
